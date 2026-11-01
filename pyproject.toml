@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "yokogawa-tool"
+version = "0.1.0"
+description = "Cross-platform waveform workbench for Yokogawa DL1640"
+readme = "readme.md"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+requires-python = ">=3.11,<3.15"
+dependencies = ["numpy>=2.2,<3", "PySide6>=6.8,<7", "pyqtgraph>=0.13.7,<0.15"]
+
+[project.scripts]
+yokogawa-tool = "yokogawa_tool.app:main"
+
+[dependency-groups]
+dev = ["pytest>=8,<10"]
+packaging = ["pyinstaller==6.22.3"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.hatch.build]
+exclude = [
+    "/build", "/dist", "/.venv", "/.git", "/captures", "/samples",
+    "**/.aws", "**/.codex", "**/.agents", "**/.ssh", "**/.gnupg",
+    "**/__pycache__", "/.pytest_cache",
+    "**/.env", "**/.env.*", "**/*.pem", "**/*.key", "**/*.p12", "**/*.pfx", "**/*.log",
+    "/docs/*-verification.json", "/docs/*-benchmark.json", "/docs/publication-audit.json",
+    "/docs/publication.md", "/docs/ToDo.md", "/docs/display-investigation.md", "/docs/development-history.md",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/yokogawa_tool"]
+
+[tool.hatch.build.targets.sdist]
+only-include = [
+    "src", "scripts", "tests", "docs", "packaging", "pyproject.toml", "uv.lock",
+    "readme.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "run.sh", "run.cmd", ".gitignore", ".dockerignore",
+    "demo/README.md", "demo/0000.HDR", "demo/0000.WVF", "demo/0001.HDR", "demo/0001.WVF",
+    "demo/0002.HDR", "demo/0002.WVF", "demo/0003.HDR", "demo/0003.WVF",
+    "demo/0004.HDR", "demo/0004.WVF", "demo/0005.HDR", "demo/0005.WVF",
+]

@@ -1,0 +1,20 @@
+$PublicInfo
+Endian Big
+DataFormat Trace
+DataOffset 0
+GroupNumber 1
+TraceTotalNumber 1
+Model SYNTHETIC
+$Group1
+TraceNumber 1
+BlockNumber 1
+TraceName CH2
+BlockSize 10020
+VResolution 0.00016276042
+VOffset 0
+VDataType IS2
+VUnit V
+HUnit s
+HResolution 1e-06
+HOffset -0.005
+VIllegalData 32767
